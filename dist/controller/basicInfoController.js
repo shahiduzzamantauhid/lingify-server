@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllInstructor = exports.getsinglecartInfo = exports.getCartInfo = exports.getcourseInfo = exports.getsingleUserInfo = exports.getUserInfo = void 0;
+exports.getAllStudents = exports.getAllInstructor = exports.getsinglecartInfo = exports.getCartInfo = exports.getcourseInfo = exports.getsingleUserInfo = exports.getUserInfo = void 0;
 const mongodb_1 = require("mongodb");
 const getUserInfo = async (req, res) => {
-    const result = req.db.collection('users').find({}).toArray();
+    const result = req.db.collection('users').find().toArray();
     res.send(await result);
 };
 exports.getUserInfo = getUserInfo;
 const getcourseInfo = async (req, res) => {
-    const result = req.db.collection('courses').find({}).toArray();
+    const result = await req.db.collection('courses').find().toArray();
     res.send(await result);
 };
 exports.getcourseInfo = getcourseInfo;
@@ -26,7 +26,7 @@ const getsinglecartInfo = async (req, res) => {
 };
 exports.getsinglecartInfo = getsinglecartInfo;
 const getCartInfo = async (req, res) => {
-    const result = req.db.collection('cart').find({}).toArray();
+    const result = req.db.collection('cart').find().toArray();
     res.send(await result);
 };
 exports.getCartInfo = getCartInfo;
@@ -35,4 +35,9 @@ const getAllInstructor = async (req, res) => {
     res.send(await result);
 };
 exports.getAllInstructor = getAllInstructor;
+const getAllStudents = async (req, res) => {
+    const result = req.db.collection('users').find({ role: 'student' }).toArray();
+    res.send(await result);
+};
+exports.getAllStudents = getAllStudents;
 //# sourceMappingURL=basicInfoController.js.map

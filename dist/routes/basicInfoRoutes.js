@@ -12,6 +12,7 @@ router.get('/singleuserinfo/:id', basicInfoController_1.getsingleUserInfo);
 router.get('/course', basicInfoController_1.getcourseInfo);
 router.get('/cart', basicInfoController_1.getCartInfo);
 router.get('/instructors', basicInfoController_1.getAllInstructor);
+router.get('/students', basicInfoController_1.getAllStudents);
 router.get('/cart/:email', basicInfoController_1.getsinglecartInfo);
 router.post('/user', postcontroller_1.postUserInfo);
 router.post('/course', postcontroller_1.postCourseInfo);
