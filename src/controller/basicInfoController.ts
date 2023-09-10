@@ -16,14 +16,11 @@ const getsingleUserInfo = async (req:Request, res:Response) => {
     res.send(await result);
 }
 const getsinglecartInfo = async (req:Request, res:Response) => {
-    const query = { userEmail: req.params.email };
+    const query = { email: req.params.email };
     const result = req.db.collection('cart').find(query).toArray();
     res.send(await result);
 }
-const getCartInfo = async (req:Request, res:Response) => {
-    const result = req.db.collection('cart').find().toArray();
-    res.send(await result);
-}
+
 const getAllInstructor = async (req:Request, res:Response) => {
     const result = req.db.collection('users').find({ role: 'instructor' }).toArray();
     res.send(await result);
@@ -32,4 +29,10 @@ const getAllStudents = async (req:Request, res:Response) => {
     const result = req.db.collection('users').find({ role: 'student' }).toArray();
     res.send(await result);
 }
-export { getUserInfo, getsingleUserInfo, getcourseInfo, getCartInfo, getsinglecartInfo, getAllInstructor, getAllStudents };
+const getAdminInfo = async (req:Request, res:Response) => {
+    const adminEmail = req.params.email;
+    const query = { email: adminEmail };
+    const firstresult = req.db.collection('users').findOne(query);
+    res.send(await firstresult );
+}
+export { getUserInfo, getsingleUserInfo, getcourseInfo, getsinglecartInfo, getAllInstructor, getAllStudents, getAdminInfo };
